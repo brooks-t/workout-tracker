@@ -19,6 +19,10 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
      useFindAndModify: false
     });
 
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+    });
+
 // get all workouts
 app.get("/api/workouts",(req,res)=>{
     db.Workout.find().then(allWorkouts=>{
