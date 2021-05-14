@@ -18,6 +18,7 @@ The fitness tracker allows you to track your workouts by adding resistance or ca
 - Click on the "Dashboard" link to the top left to view your workout dashboard.
 
 ## LINK
+https://bt-fitness-tracker.herokuapp.com/
 
 ## SCREENSHOT
 ![screenshot of fitness tracker](public/img/screenshot.png)
