@@ -17,8 +17,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workouts", {
     });
 
 app.get("/api/workouts",(req,res)=>{
-    db.Donut.find().then(allDonuts=>{
-        res.json(allDonuts)
+    db.Workout.find().then(allWorkouts=>{
+        res.json(allWorkouts)
     }).catch(err=>{
         res.status(500).json(err);
     })
