@@ -25,7 +25,25 @@ app.get("/", (req, res) => {
 
 // get all workouts
 app.get("/api/workouts",(req,res)=>{
-    db.Workout.find().then(allWorkouts=>{
+    db.Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: {
+                    $sum: "$exercises.duration"}}}]).then(allWorkouts=>{
+        res.json(allWorkouts);
+    }).catch(err=>{
+        res.status(500).json(err);
+    })
+})
+
+app.get("/api/workouts/range",(req,res)=>{
+    db.Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: {
+                    $sum: "$exercises.duration"}}}]).
+                    sort({_id: -1}).limit(7)
+                    .then(allWorkouts=>{
         res.json(allWorkouts);
     }).catch(err=>{
         res.status(500).json(err);
