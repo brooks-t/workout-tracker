@@ -11,7 +11,15 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/donuts", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workouts", {
      useNewUrlParser: true ,
      useUnifiedTopology: true
     });
+
+app.get("/api/workouts",(req,res)=>{
+    db.Donut.find().then(allDonuts=>{
+        res.json(allDonuts)
+    }).catch(err=>{
+        res.status(500).json(err);
+    })
+})
